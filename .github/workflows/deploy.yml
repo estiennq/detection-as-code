@@ -1,0 +1,38 @@
+name: Deploy detections
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: pip install sigma-cli
+
+    - name: Install elasticsearch backend
+      run: sigma plugin install elasticsearch
+
+    - name: Convert rules to Lucene
+      run: |
+        mkdir -p dist/lucene
+        for rule in detections/**/*.yml; do
+          name=$(basename "$rule" .yml)
+          sigma convert -t lucene --without-pipeline "$rule" > "dist/lucene/$name.lucene"
+          echo "Converted $rule"
+        done
+
+    - name: Upload converted rules
+      uses: actions/upload-artifact@v4
+      with:
+        name: converted-rules
+        path: dist/
