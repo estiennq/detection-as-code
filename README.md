@@ -49,7 +49,7 @@ detection-as-code/
     └── test_with_es.py
 ```
 
-## Comment contribuer une règle
+## Comment contribuer à une règle
 
 1. Créez une branche : `git checkout -b feature/nom-de-la-regle`
 2. Ajoutez la règle dans `detections/<os>/<nom>.yml` au format Sigma
