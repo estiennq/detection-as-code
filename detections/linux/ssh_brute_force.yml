@@ -5,7 +5,7 @@ description: Detects multiple failed SSH login attempts from a single source IP
 references:
     - https://attack.mitre.org/techniques/T1110/
 author: Quentin Estienne
-date: 2026/06/22
+date: 2026/06/25
 tags:
     - attack.t1110.001
 logsource:
