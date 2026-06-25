@@ -1,0 +1,6 @@
+{
+      "Message": "quentin : TTY=pts/0 ; PWD=/home/quentin ; USER=root ; 
+  COMMAND=/bin/bash",
+      "Hostname": "serveur-web-01",
+      "ProcessName": "sudo"
+}
