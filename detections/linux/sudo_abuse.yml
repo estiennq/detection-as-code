@@ -1,0 +1,23 @@
+title: Sudo abuse
+id: c97980da-fc7c-4a96-b92f-b72f0b8fd04d
+status: experimental
+description: Detects privilege escalation via sudo by identifying execution of interactive shells as root.
+references:
+    - https://attack.mitre.org/techniques/T1548/003/
+author: Quentin Estienne
+date: 2026/06/25
+tags:
+    - attack.t1548.003
+logsource:
+    product: linux
+    service: auth
+detection:
+    selection:
+        Message|contains:
+        - 'bin/bash'
+        - 'bin/sh'
+        - 'bin/zsh'
+    condition: selection
+level: high
+falsepositives:
+    - Legitimate administrators opening a root shell for maintenance
